@@ -82,27 +82,10 @@
 <h1 class="display-4 p-0 mb-5">Getting Started</h1>
 <div class="section" id="installation">
 <h2>Installation</h2>
-<div class="section" id="on-mac">
-<h3>On Mac</h3>
-<div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>conda create -n cgal <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.7 python.app eigen boost-cpp gmp mpfr cgal-cpp<span class="s2">&quot;&gt;=5.0&quot;</span> pybind11 COMPAS<span class="s2">&quot;&gt;=0.16.0&quot;</span>
-conda activate cgal
-pip install -e .
+<p><code class="docutils literal notranslate"><span class="pre">compas_cgal</span></code> ca be installed via <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code>.</p>
+<div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>conda install compas_cgal
 </code></pre></div>
 </div>
-</div>
-<div class="section" id="on-windows">
-<h3>On Windows</h3>
-<div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>conda create -n cgal <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.7 eigen boost-cpp mpir mpfr cgal-cpp<span class="s2">&quot;&gt;=5.0&quot;</span> pybind11 COMPAS<span class="s2">&quot;&gt;=0.16.0&quot;</span>
-conda activate cgal
-pip install -e .
-</code></pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="viewers">
-<h2>Viewers</h2>
-<p>To install the viewers for CAD independent visualisation, please follow the instructions available here:
-<a class="reference external" href="https://github.com/compas-dev/compas_viewers">https://github.com/compas-dev/compas_viewers</a></p>
 </div>
 </div>
 
@@ -139,12 +122,7 @@ pip install -e .
         
         <ul class="nav flex-column" id="compas-toc">
 <li class="nav-item"><a class="nav-link reference internal" href="#">Getting Started</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#installation">Installation</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#on-mac">On Mac</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#on-windows">On Windows</a></li>
-</ul>
-</li>
-<li class="nav-item"><a class="nav-link reference internal" href="#viewers">Viewers</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#installation">Installation</a></li>
 </ul>
 </li>
 </ul>
@@ -225,6 +203,20 @@ pip install -e .
     }).addClass("active");
 
   });
+
+
+  var url = $("#doc_versions").data("url");
+  var docs_site = $("#doc_versions").data("docs");
+
+  if (url) {
+    $.get(url, res=>{
+      var lines = res.match(/[^\r\n]+/g);
+      lines.forEach(version => {
+        $("#doc_version_list").append("<a class=\"dropdown-item\" href=\""+ docs_site + version + "\">" + version + "</a>");
+      });
+    })
+  }
+
   </script>
   
   
