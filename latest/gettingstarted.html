@@ -8,8 +8,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-  <meta name="author" content="Tom Van Mele" />
-  <meta name="description" content="COMPAS package for working with CGAL" />
+  <meta name="author" content="compas-dev" />
+  <meta name="description" content="" />
 
   <link rel="shortcut icon" href="_static/images/compas.ico" type="image/x-icon">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -93,16 +93,22 @@
 <h1>Getting Started</h1>
 <div class="section" id="installation">
 <h2>Installation</h2>
-<p><code class="docutils literal notranslate"><span class="pre">compas_cgal</span></code> ca be installed via <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code>.</p>
-<div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>conda install compas_cgal
+<p><code class="docutils literal notranslate"><span class="pre">compas_cgal</span></code> can be installed via <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code>.</p>
+<div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>conda create -n cgal -c conda-forge <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.8 compas compas_cgal
 </code></pre></div>
 </div>
 </div>
 <div class="section" id="optional-requirements">
 <h2>Optional requirements</h2>
 <p>Several examples use COMPAS View2 for visualisation outside of CAD environments.
-To install View2, see the instructions here:
-<a class="reference external" href="https://compas.dev/compas_view2/latest/gettingstarted.html">View 2 - Getting Started</a></p>
+To install <code class="docutils literal notranslate"><span class="pre">compas_view2</span></code> in the same environment</p>
+<div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>conda install -n cgal -c conda-forge compas_view2
+</code></pre></div>
+</div>
+<p>Or everything in one go</p>
+<div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>conda create -n cgal -c conda-forge compas compas_cgal compas_view2
+</code></pre></div>
+</div>
 </div>
 </div>
 
