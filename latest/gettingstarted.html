@@ -94,7 +94,8 @@
 <div class="section" id="installation">
 <h2>Installation</h2>
 <p><code class="docutils literal notranslate"><span class="pre">compas_cgal</span></code> can be installed via <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code>.</p>
-<div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>conda create -n cgal -c conda-forge <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.8 compas compas_cgal
+<div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>conda create -n cgal -c conda-forge compas compas_cgal --yes
+conda activate cgal
 </code></pre></div>
 </div>
 </div>
@@ -102,11 +103,11 @@
 <h2>Optional requirements</h2>
 <p>Several examples use COMPAS View2 for visualisation outside of CAD environments.
 To install <code class="docutils literal notranslate"><span class="pre">compas_view2</span></code> in the same environment</p>
-<div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>conda install -n cgal -c conda-forge compas_view2
+<div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>conda install compas_view2 --yes
 </code></pre></div>
 </div>
 <p>Or everything in one go</p>
-<div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>conda create -n cgal -c conda-forge compas compas_cgal compas_view2
+<div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>conda create -n cgal -c conda-forge compas compas_cgal compas_view2 --yes
 </code></pre></div>
 </div>
 </div>
