@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   
-  <title>compas_cgal - remesh</title>
+  <title>compas_cgal - compas_cgal.trimesh.TriMesh</title>
   
 
   <meta charset="utf-8" />
@@ -19,11 +19,11 @@
   <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
 
   
-    <link rel="next" title="slice_mesh" href="compas_cgal.slicer.slice_mesh.html" />
+    <link rel="next" title="boolean_union" href="compas_cgal.booleans.boolean_union.html" />
   
 
   
-    <link rel="prev" title="compas_cgal.measure.volume" href="compas_cgal.measure.volume.html" />
+    <link rel="prev" title="compas_cgal" href="../compas_cgal.html" />
   
 
   <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -86,37 +86,124 @@
             
               <li class="breadcrumb-item"><a href="../compas_cgal.html">compas_cgal</a></li>
             
-            <li class="breadcrumb-item active" aria-current="page">remesh</li>
+            <li class="breadcrumb-item active" aria-current="page">compas_cgal.trimesh.TriMesh</li>
           </ol>
         </nav>
         
 
         
         
-        <section class="detail" id="remesh">
-<h1>remesh</h1>
-<dl class="function">
-<dt id="compas_cgal.meshing.remesh">
-<code class="sig-prename descclassname">compas_cgal.meshing.</code><code class="sig-name descname">remesh</code><span class="sig-paren">(</span><em class="sig-param">mesh: Union[Tuple[nptyping.types._ndarray.NDArray, nptyping.types._ndarray.NDArray], Tuple[List[List[float][List[float]]], List[List[int][List[int]]]]], target_edge_length: float, number_of_iterations: int = 10, do_project: bool = True</em><span class="sig-paren">)</span> &#x2192; Tuple[nptyping.types._ndarray.NDArray, nptyping.types._ndarray.NDArray]<a class="reference external" href="https://github.com/compas-dev/compas_cgal/blob/master/src/compas_cgal/meshing.py#L16"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Remeshing of a triangle mesh.</p>
+        <section id="compas-cgal-trimesh-trimesh">
+<h1>compas_cgal.trimesh.TriMesh</h1>
+<dl class="class">
+<dt id="compas_cgal.trimesh.TriMesh">
+<em class="property">class </em><code class="sig-prename descclassname">compas_cgal.trimesh.</code><code class="sig-name descname">TriMesh</code><span class="sig-paren">(</span><em class="sig-param">vertices</em>, <em class="sig-param">faces</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/compas-dev/compas_cgal/blob/master/src/compas_cgal/trimesh.py#L26"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Class representing a triangle mesh with its vertices and faces stored as Numpy arrays.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>mesh</strong> (<em>tuple of vertices and faces</em>) – The mesh to remesh.</p></li>
-<li><p><strong>target_edge_length</strong> (<em>float</em>) – The target edge length.</p></li>
-<li><p><strong>number_of_iterations</strong> (<em>int, optional</em>) – Number of remeshing iterations.
-Default is <code class="docutils literal notranslate"><span class="pre">10</span></code>.</p></li>
-<li><p><strong>do_project</strong> (<em>bool, optional</em>) – Reproject vertices onto the input surface when they are created or displaced.
-Default is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><strong>vertices</strong> (<em>array-like</em>) – The vertices of the mesh.</p></li>
+<li><p><strong>faces</strong> (<em>array-like</em>) – The faces of the mesh.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><em>list</em> – The vertices and faces of the new mesh.</p>
+<dt class="field-even">Attributes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>vertices</strong> (<em>ndarray[(n, 3), float64]</em>) – The vertices of the mesh stored as a <cite>n</cite> by 3 Numpy array of floats,
+with <cite>n</cite> the number of vertices.</p></li>
+<li><p><strong>faces</strong> (<em>ndarray[(f, 3), int32]</em>) – The faces of the mesh stored as a <cite>f</cite> by 3 Numpy array of integers,
+with <cite>f</cite> the number of faces.</p></li>
+<li><p><strong>edges</strong> (<em>list of tuple(int, int) - readonly</em>) – Edges of the mesh as pairs of vertices.</p></li>
+<li><p><strong>adjacency</strong> (<em>dict - readonly</em>) – Vertex adjacency dict.</p></li>
+<li><p><strong>C</strong> (<em>sp.sparse.csr_matrix - readonly</em>) – Sparse connectivity matrix.</p></li>
+<li><p><strong>A</strong> (<em>sp.sparse.csr_matrix - readonly</em>) – Sparse adjacency matrix.</p></li>
+<li><p><strong>D</strong> (<em>sp.sparse.csr_matrix - readonly</em>) – Sparse degree matrix.</p></li>
+<li><p><strong>centroid</strong> (<em>ndarray[(1, 3), float64] - readonly</em>) – The centroid of the mesh.</p></li>
+<li><p><strong>average_edge_length</strong> (<em>float - readonly</em>) – The average length og the edges.</p></li>
+</ul>
 </dd>
 </dl>
-<p class="rubric">Notes</p>
-<p>This remeshing function only constrains the edges on the boundary of the mesh.
-To protect specific features or edges, please use <code class="xref py py-func docutils literal notranslate"><span class="pre">remesh_constrained()</span></code>.</p>
+<dl class="method">
+<dt id="compas_cgal.trimesh.TriMesh.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">vertices</em>, <em class="sig-param">faces</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/compas-dev/compas_cgal/blob/master/src/compas_cgal/trimesh.py#L61"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy</span></code>()</p></td>
+<td><p>Create an independent copy of the triangle mesh.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">cull_vertices</span></code>()</p></td>
+<td><p>Remove unused vertices.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_mesh</span></code>(mesh)</p></td>
+<td><p>Construct a triangle mesh from a COMPAS mesh.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_off</span></code>(filepath[, precision])</p></td>
+<td><p>Construct a triangle mesh from the data in an OFF file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_ply</span></code>(filepath[, precision])</p></td>
+<td><p>Construct a triangle mesh from the data in a PLY file.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_stl</span></code>(filepath[, precision])</p></td>
+<td><p>Construct a triangle mesh from the data in an STL file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">remesh</span></code>(target_length[, iterations])</p></td>
+<td><p>Remesh the triangle mesh.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_mesh</span></code>()</p></td>
+<td><p>Convert the triangle mesh to a COMPAS mesh</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">transform</span></code>(T)</p></td>
+<td><p>Transform the triangle mesh.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">transformed</span></code>(T)</p></td>
+<td><p>Create a transformed copy of the triangle mesh.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">A</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">C</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">D</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">adjacency</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">average_edge_length</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">centroid</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">edges</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">faces</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">vertices</span></code></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </section>
@@ -143,13 +230,13 @@ To protect specific features or edges, please use <code class="xref py py-func d
 <li class="nav-item"><a class="nav-link reference internal" href="../../examples.html">Examples</a></li>
 <li class="nav-item active"><a class="nav-link reference internal" href="../../api.html">API Reference</a><ul class="nav flex-column active">
 <li class="nav-item active"><a class="nav-link reference internal" href="../compas_cgal.html">compas_cgal</a><ul class="nav flex-column active">
-<li class="nav-item"><a class="nav-link reference internal" href="compas_cgal.trimesh.TriMesh.html">compas_cgal.trimesh.TriMesh</a></li>
+<li class="nav-item active"><a class="nav-link active current reference internal" href="#">compas_cgal.trimesh.TriMesh</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_cgal.booleans.boolean_union.html">boolean_union</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_cgal.booleans.boolean_difference.html">boolean_difference</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_cgal.booleans.boolean_intersection.html">boolean_intersection</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_cgal.intersections.intersection_mesh_mesh.html">intersection_mesh_mesh</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_cgal.measure.volume.html">compas_cgal.measure.volume</a></li>
-<li class="nav-item active"><a class="nav-link active current reference internal" href="#">remesh</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_cgal.meshing.remesh.html">remesh</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_cgal.slicer.slice_mesh.html">slice_mesh</a></li>
 </ul>
 </li>
@@ -166,7 +253,7 @@ To protect specific features or edges, please use <code class="xref py py-func d
       <div class="d-none d-xl-block col-xl-2 compas-toc" role="toc">
         
         <ul class="nav flex-column" id="compas-toc">
-<li class="nav-item"><a class="nav-link reference internal" href="#">remesh</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#">compas_cgal.trimesh.TriMesh</a></li>
 </ul>
 
       </div>
@@ -178,20 +265,20 @@ To protect specific features or edges, please use <code class="xref py py-func d
   <footer class="compas-footer">
     <nav class="nav p-2">
       
-        <a href="compas_cgal.measure.volume.html" title="compas_cgal.measure.volume" class="nav-link footer-link float-start text-left d-flex w-50" rel="prev">
+        <a href="../compas_cgal.html" title="compas_cgal" class="nav-link footer-link float-start text-left d-flex w-50" rel="prev">
           <div class="nav-button p-2 m-2"><i class="fas fa-arrow-left"></i></div>
           <div class="nav-title flex-grow-1 align-self-center">
             <div class="nav-direction small font-weight-light">Previous</div>
-            compas_cgal.measure.volume
+            compas_cgal
           </div>
         </a>
       
 
       
-        <a href="compas_cgal.slicer.slice_mesh.html" title="slice_mesh" class="nav-link footer-link float-end text-right d-flex w-50" rel="next">
+        <a href="compas_cgal.booleans.boolean_union.html" title="boolean_union" class="nav-link footer-link float-end text-right d-flex w-50" rel="next">
           <div class="nav-title footer-link flex-grow-1 align-self-center">
             <div class="nav-direction small font-weight-light">Next</div>
-            slice_mesh
+            boolean_union
           </div>
           <div class="nav-button p-2 m-2"><i class="fas fa-arrow-right"></i></div>
         </a>

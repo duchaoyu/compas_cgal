@@ -97,7 +97,7 @@
 <h1>slice_mesh</h1>
 <dl class="function">
 <dt id="compas_cgal.slicer.slice_mesh">
-<code class="sig-prename descclassname">compas_cgal.slicer.</code><code class="sig-name descname">slice_mesh</code><span class="sig-paren">(</span><em class="sig-param">mesh</em>, <em class="sig-param">planes</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/compas-dev/compas_cgal/blob/master/src/compas_cgal/slicer.py#L11"><span class="viewcode-link">[source]</span></a></dt>
+<code class="sig-prename descclassname">compas_cgal.slicer.</code><code class="sig-name descname">slice_mesh</code><span class="sig-paren">(</span><em class="sig-param">mesh: Union[Tuple[nptyping.types._ndarray.NDArray, nptyping.types._ndarray.NDArray], Tuple[List[List[float][List[float]]], List[List[int][List[int]]]]], planes: List[Union[compas.geometry.primitives.plane.Plane, Tuple[compas.geometry.primitives.point.Point, compas.geometry.primitives.vector.Vector], Tuple[List[float][List[float]], List[float][List[float]]]]]</em><span class="sig-paren">)</span> &#x2192; List[nptyping.types._ndarray.NDArray]<a class="reference external" href="https://github.com/compas-dev/compas_cgal/blob/master/src/compas_cgal/slicer.py#L15"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Slice a mesh by a list of planes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -136,10 +136,12 @@
 <li class="nav-item"><a class="nav-link reference internal" href="../../examples.html">Examples</a></li>
 <li class="nav-item active"><a class="nav-link reference internal" href="../../api.html">API Reference</a><ul class="nav flex-column active">
 <li class="nav-item active"><a class="nav-link reference internal" href="../compas_cgal.html">compas_cgal</a><ul class="nav flex-column active">
+<li class="nav-item"><a class="nav-link reference internal" href="compas_cgal.trimesh.TriMesh.html">compas_cgal.trimesh.TriMesh</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_cgal.booleans.boolean_union.html">boolean_union</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_cgal.booleans.boolean_difference.html">boolean_difference</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_cgal.booleans.boolean_intersection.html">boolean_intersection</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_cgal.intersections.intersection_mesh_mesh.html">intersection_mesh_mesh</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_cgal.measure.volume.html">compas_cgal.measure.volume</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_cgal.meshing.remesh.html">remesh</a></li>
 <li class="nav-item active"><a class="nav-link active current reference internal" href="#">slice_mesh</a></li>
 </ul>
