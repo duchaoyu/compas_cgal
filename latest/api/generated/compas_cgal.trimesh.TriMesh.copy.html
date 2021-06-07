@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   
-  <title>compas_cgal - remesh</title>
+  <title>compas_cgal - TriMesh.copy</title>
   
 
   <meta charset="utf-8" />
@@ -19,11 +19,11 @@
   <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
 
   
-    <link rel="next" title="slice_mesh" href="compas_cgal.slicer.slice_mesh.html" />
+    <link rel="next" title="TriMesh.cull_vertices" href="compas_cgal.trimesh.TriMesh.cull_vertices.html" />
   
 
   
-    <link rel="prev" title="volume" href="compas_cgal.measure.volume.html" />
+    <link rel="prev" title="TriMesh" href="compas_cgal.trimesh.TriMesh.html" />
   
 
   <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -86,37 +86,21 @@
             
               <li class="breadcrumb-item"><a href="../compas_cgal.html">compas_cgal</a></li>
             
-            <li class="breadcrumb-item active" aria-current="page">remesh</li>
+              <li class="breadcrumb-item"><a href="compas_cgal.trimesh.TriMesh.html">TriMesh</a></li>
+            
+            <li class="breadcrumb-item active" aria-current="page">TriMesh.copy</li>
           </ol>
         </nav>
         
 
         
         
-        <section class="detail" id="remesh">
-<h1>remesh</h1>
-<dl class="function">
-<dt id="compas_cgal.meshing.remesh">
-<code class="sig-prename descclassname">compas_cgal.meshing.</code><code class="sig-name descname">remesh</code><span class="sig-paren">(</span><em class="sig-param">mesh</em>, <em class="sig-param">target_edge_length</em>, <em class="sig-param">number_of_iterations</em>, <em class="sig-param">do_project</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/compas-dev/compas_cgal/blob/master/src/compas_cgal/meshing.py#L6"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Remeshing of a triangle mesh.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>mesh</strong> (<em>tuple of vertices and faces</em>) – The mesh to remesh.</p></li>
-<li><p><strong>target_edge_length</strong> (<em>float</em>) – The target edge length.</p></li>
-<li><p><strong>number_of_iterations</strong> (<em>int, optional</em>) – Number of remeshing iterations.
-Default is <code class="docutils literal notranslate"><span class="pre">10</span></code>.</p></li>
-<li><p><strong>do_project</strong> (<em>bool, optional</em>) – Reproject vertices onto the input surface when they are created or displaced.
-Default is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><em>list</em> – The vertices and faces of the new mesh.</p>
-</dd>
-</dl>
-<p class="rubric">Notes</p>
-<p>This remeshing function only constrains the edges on the boundary of the mesh.
-To protect specific features or edges, please use <code class="xref py py-func docutils literal notranslate"><span class="pre">remesh_constrained()</span></code>.</p>
+        <section class="detail" id="trimesh-copy">
+<h1>TriMesh.copy</h1>
+<dl class="method">
+<dt id="compas_cgal.trimesh.TriMesh.copy">
+<code class="sig-prename descclassname">TriMesh.</code><code class="sig-name descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/compas-dev/compas_cgal/blob/master/src/compas_cgal/trimesh.py#L188"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Create an independent copy of the triangle mesh.</p>
 </dd></dl>
 
 </section>
@@ -143,13 +127,13 @@ To protect specific features or edges, please use <code class="xref py py-func d
 <li class="nav-item"><a class="nav-link reference internal" href="../../examples.html">Examples</a></li>
 <li class="nav-item active"><a class="nav-link reference internal" href="../../api.html">API Reference</a><ul class="nav flex-column active">
 <li class="nav-item active"><a class="nav-link reference internal" href="../compas_cgal.html">compas_cgal</a><ul class="nav flex-column active">
-<li class="nav-item"><a class="nav-link reference internal" href="compas_cgal.trimesh.TriMesh.html">TriMesh</a></li>
+<li class="nav-item active"><a class="nav-link reference internal" href="compas_cgal.trimesh.TriMesh.html">TriMesh</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_cgal.booleans.boolean_union.html">boolean_union</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_cgal.booleans.boolean_difference.html">boolean_difference</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_cgal.booleans.boolean_intersection.html">boolean_intersection</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_cgal.intersections.intersection_mesh_mesh.html">intersection_mesh_mesh</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_cgal.measure.volume.html">volume</a></li>
-<li class="nav-item active"><a class="nav-link active current reference internal" href="#">remesh</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_cgal.meshing.remesh.html">remesh</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_cgal.slicer.slice_mesh.html">slice_mesh</a></li>
 </ul>
 </li>
@@ -166,7 +150,7 @@ To protect specific features or edges, please use <code class="xref py py-func d
       <div class="d-none d-xl-block col-xl-2 compas-toc" role="toc">
         
         <ul class="nav flex-column" id="compas-toc">
-<li class="nav-item"><a class="nav-link reference internal" href="#">remesh</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#">TriMesh.copy</a></li>
 </ul>
 
       </div>
@@ -178,20 +162,20 @@ To protect specific features or edges, please use <code class="xref py py-func d
   <footer class="compas-footer">
     <nav class="nav p-2">
       
-        <a href="compas_cgal.measure.volume.html" title="volume" class="nav-link footer-link float-start text-left d-flex w-50" rel="prev">
+        <a href="compas_cgal.trimesh.TriMesh.html" title="TriMesh" class="nav-link footer-link float-start text-left d-flex w-50" rel="prev">
           <div class="nav-button p-2 m-2"><i class="fas fa-arrow-left"></i></div>
           <div class="nav-title flex-grow-1 align-self-center">
             <div class="nav-direction small font-weight-light">Previous</div>
-            volume
+            TriMesh
           </div>
         </a>
       
 
       
-        <a href="compas_cgal.slicer.slice_mesh.html" title="slice_mesh" class="nav-link footer-link float-end text-right d-flex w-50" rel="next">
+        <a href="compas_cgal.trimesh.TriMesh.cull_vertices.html" title="TriMesh.cull_vertices" class="nav-link footer-link float-end text-right d-flex w-50" rel="next">
           <div class="nav-title footer-link flex-grow-1 align-self-center">
             <div class="nav-direction small font-weight-light">Next</div>
-            slice_mesh
+            TriMesh.cull_vertices
           </div>
           <div class="nav-button p-2 m-2"><i class="fas fa-arrow-right"></i></div>
         </a>
