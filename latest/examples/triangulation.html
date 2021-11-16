@@ -103,6 +103,9 @@
 <span class="kn">from</span> <span class="nn">compas.datastructures</span> <span class="kn">import</span> <span class="n">Mesh</span>
 <span class="kn">from</span> <span class="nn">compas_cgal.triangulation</span> <span class="kn">import</span> <span class="n">constrained_delaunay_triangulation</span>
 
+<span class="c1"># ==============================================================================</span>
+<span class="c1"># Constraints</span>
+<span class="c1"># ==============================================================================</span>
 
 <span class="n">boundary</span> <span class="o">=</span> <span class="n">Polygon</span><span class="o">.</span><span class="n">from_sides_and_radius_xy</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <span class="n">boundary</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">boundary</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
@@ -114,9 +117,19 @@
 <span class="n">hole3</span> <span class="o">=</span> <span class="n">hole</span><span class="o">.</span><span class="n">transformed</span><span class="p">(</span><span class="n">Translation</span><span class="o">.</span><span class="n">from_vector</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
 <span class="n">hole4</span> <span class="o">=</span> <span class="n">hole</span><span class="o">.</span><span class="n">transformed</span><span class="p">(</span><span class="n">Translation</span><span class="o">.</span><span class="n">from_vector</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
 
-<span class="n">V</span><span class="p">,</span> <span class="n">F</span> <span class="o">=</span> <span class="n">constrained_delaunay_triangulation</span><span class="p">(</span><span class="n">boundary</span><span class="p">,</span> <span class="p">[</span><span class="n">hole1</span><span class="p">,</span> <span class="n">hole2</span><span class="p">,</span> <span class="n">hole3</span><span class="p">,</span> <span class="n">hole4</span><span class="p">],</span> <span class="p">[],</span> <span class="n">maxlength</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">holes</span> <span class="o">=</span> <span class="p">[</span><span class="n">hole1</span><span class="p">,</span> <span class="n">hole2</span><span class="p">,</span> <span class="n">hole3</span><span class="p">,</span> <span class="n">hole4</span><span class="p">]</span>
+
+<span class="c1"># ==============================================================================</span>
+<span class="c1"># Triangulation</span>
+<span class="c1"># ==============================================================================</span>
+
+<span class="n">V</span><span class="p">,</span> <span class="n">F</span> <span class="o">=</span> <span class="n">constrained_delaunay_triangulation</span><span class="p">(</span><span class="n">boundary</span><span class="p">,</span> <span class="n">holes</span><span class="p">,</span> <span class="n">maxlength</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 
 <span class="n">mesh</span> <span class="o">=</span> <span class="n">Mesh</span><span class="o">.</span><span class="n">from_vertices_and_faces</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">F</span><span class="p">)</span>
+
+<span class="c1"># ==============================================================================</span>
+<span class="c1"># Viz</span>
+<span class="c1"># ==============================================================================</span>
 
 <span class="n">plotter</span> <span class="o">=</span> <span class="n">Plotter</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <span class="n">plotter</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">sizepolicy</span><span class="o">=</span><span class="s1">&#39;absolute&#39;</span><span class="p">,</span> <span class="n">vertexsize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
